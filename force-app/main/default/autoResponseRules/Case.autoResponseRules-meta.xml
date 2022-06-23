@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AutoResponseRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <autoResponseRule>
+        <fullName>Support</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <formula>Owner:Queue.QueueName = &quot;Support&quot; &amp;&amp; ISNEW() &amp;&amp; NOT(ISBLANK(SuppliedEmail))</formula>
+            <notifyCcRecipients>false</notifyCcRecipients>
+            <replyToEmail>amir.akhoundpour+support@inquisitive.com</replyToEmail>
+            <senderEmail>amir.akhoundpour@inquisitive.com</senderEmail>
+            <senderName>Inquistive Support</senderName>
+            <template>Support/Case_Creation_Email_1655937595921</template>
+        </ruleEntry>
+    </autoResponseRule>
+</AutoResponseRules>

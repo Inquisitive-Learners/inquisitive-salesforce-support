@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignmentRule>
+        <fullName>Support Queue Case Routing</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <assignedTo>Product_Email</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>SuppliedEmail = &quot;support@inquisitive.com&quot;</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Product_Email_Bounced</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Subject = &quot;Delivery Status Notification (Failure)&quot;</formula>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Support</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>ISNEW() &amp;&amp; NOT(ISBLANK(SuppliedEmail))</formula>
+        </ruleEntry>
+    </assignmentRule>
+</AssignmentRules>

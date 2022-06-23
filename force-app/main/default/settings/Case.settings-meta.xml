@@ -22,7 +22,20 @@
         <enableThreadIDInSubject>true</enableThreadIDInSubject>
         <notifyOwnerOnNewCaseEmail>true</notifyOwnerOnNewCaseEmail>
         <overEmailLimitAction>Bounce</overEmailLimitAction>
-        <preQuoteSignature>false</preQuoteSignature>        
+        <preQuoteSignature>false</preQuoteSignature>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email</caseOrigin>
+            <caseOwner>Support</caseOwner>
+            <caseOwnerType>Queue</caseOwnerType>
+            <casePriority>Medium</casePriority>
+            <createTask>false</createTask>
+            <emailAddress>amir.akhoundpour+support@inquisitive.com</emailAddress>
+            <emailServicesAddress>amir.akhoundpour+support@w-25tafcc101wgyq5pbpxj14t1dn4w9gbzhclk5absht0u7lmoyz.2w-1dzbieau.aus27.case.salesforce.com</emailServicesAddress>
+            <isVerified>true</isVerified>
+            <routingName>Support</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+        </routingAddresses>
         <unauthorizedSenderAction>Discard</unauthorizedSenderAction>
     </emailToCase>
     <enableCaseFeed>true</enableCaseFeed>

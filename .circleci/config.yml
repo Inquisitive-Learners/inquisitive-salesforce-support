@@ -1,0 +1,281 @@
+version: 2.1
+orbs:
+  sfdx: circleci/salesforce-sfdx@2.1.0
+jobs:
+  dev-sandbox:
+    executor: sfdx/default
+    steps:
+      - checkout
+      - sfdx/install:
+          version: 7.84.2
+      - run:
+          name: Inject envs
+          command: |
+            echo 'export SFDX_JWT_KEY=${JWT_KEY}' >> $BASH_ENV
+            echo 'export SFDX_CONSUMER_KEY=${DEV_CONSUMER_KEY}' >> $BASH_ENV
+            echo 'export DEV_USERNAME=${DEV_USERNAME}' >> $BASH_ENV
+            echo 'export DEV_INSTANCE_URL=${DEV_INSTANCE_URL}' >> $BASH_ENV
+
+      - sfdx/auth:
+          defaultusername: $DEV_USERNAME
+          instanceUrl: $DEV_INSTANCE_URL
+      - run:
+          name: Run your SFDX commands here
+          command: |
+            sfdx force:auth:list
+            sfdx force:source:deploy -u $DEV_USERNAME --json --loglevel fatal -x manifest/package.xml
+
+  dev-destructive-sandbox:
+    executor: sfdx/default
+    steps:
+      - checkout
+      - sfdx/install:
+          version: 7.84.2
+      - run:
+          name: Inject envs
+          command: |
+            echo 'export SFDX_JWT_KEY=${JWT_KEY}' >> $BASH_ENV
+            echo 'export SFDX_CONSUMER_KEY=${DEV_CONSUMER_KEY}' >> $BASH_ENV
+            echo 'export DEV_USERNAME=${DEV_USERNAME}' >> $BASH_ENV
+            echo 'export DEV_INSTANCE_URL=${DEV_INSTANCE_URL}' >> $BASH_ENV
+
+      - sfdx/auth:
+          defaultusername: $DEV_USERNAME
+          instanceUrl: $DEV_INSTANCE_URL
+      - run:
+          name: Run your SFDX commands here
+          command: |
+            sfdx force:auth:list
+            sfdx force:mdapi:deploy -d destructive -u $DEV_USERNAME -w -1
+
+  dubbo-sandbox:
+    executor: sfdx/default
+    steps:
+      - checkout
+      - sfdx/install:
+          version: 7.84.2
+      - run:
+          name: Inject envs
+          command: |
+            echo 'export SFDX_JWT_KEY=${JWT_KEY}' >> $BASH_ENV
+            echo 'export SFDX_CONSUMER_KEY=${DUBBO_CONSUMER_KEY}' >> $BASH_ENV
+            echo 'export DUBBO_USERNAME=${DUBBO_USERNAME}' >> $BASH_ENV
+            echo 'export DUBBO_INSTANCE_URL=${DUBBO_INSTANCE_URL}' >> $BASH_ENV
+
+      - sfdx/auth:
+          defaultusername: $DUBBO_USERNAME
+          instanceUrl: $DUBBO_INSTANCE_URL
+
+      - run:
+          name: Run your SFDX commands here
+          command: |
+            sfdx force:auth:list
+            sfdx force:source:deploy -u $DUBBO_USERNAME --json --loglevel fatal -x manifest/package.xml
+
+  dubbo-destructive-sandbox:
+    executor: sfdx/default
+    steps:
+      - checkout
+      - sfdx/install:
+          version: 7.84.2
+      - run:
+          name: Inject envs
+          command: |
+            echo 'export SFDX_JWT_KEY=${JWT_KEY}' >> $BASH_ENV
+            echo 'export SFDX_CONSUMER_KEY=${DUBBO_CONSUMER_KEY}' >> $BASH_ENV
+            echo 'export DUBBO_USERNAME=${DUBBO_USERNAME}' >> $BASH_ENV
+            echo 'export DUBBO_INSTANCE_URL=${DUBBO_INSTANCE_URL}' >> $BASH_ENV
+
+      - sfdx/auth:
+          defaultusername: $DUBBO_USERNAME
+          instanceUrl: $DUBBO_INSTANCE_URL
+
+      - run:
+          name: Run your SFDX commands here
+          command: |
+            sfdx force:auth:list            
+            sfdx force:mdapi:deploy -d destructive -u $DUBBO_USERNAME -w -1
+
+  production-au:
+    executor: sfdx/default
+    steps:
+      - checkout
+      - sfdx/install:
+          version: 7.84.2
+      - run:
+          name: Inject envs
+          command: |
+            echo 'export SFDX_JWT_KEY=${JWT_KEY}' >> $BASH_ENV
+            echo 'export SFDX_CONSUMER_KEY=${PROD_CONSUMER_KEY}' >> $BASH_ENV
+            echo 'export PROD_USERNAME=${PROD_USERNAME}' >> $BASH_ENV
+            echo 'export PROD_INSTANCE_URL=${PROD_INSTANCE_URL}' >> $BASH_ENV
+
+      - sfdx/auth:
+          defaultusername: $PROD_USERNAME
+          instanceUrl: $PROD_INSTANCE_URL
+
+      - run:
+          name: Run your SFDX commands here
+          command: |
+            sfdx force:auth:list
+            sfdx force:source:deploy -l RunLocalTests -u $PROD_USERNAME --json --loglevel fatal -x manifest/package.xml
+  production-us:
+    executor: sfdx/default
+    steps:
+      - checkout
+      - sfdx/install:
+          version: 7.84.2
+      - run:
+          name: Inject envs
+          command: |
+            echo 'export SFDX_JWT_KEY=${JWT_US_KEY}' >> $BASH_ENV
+            echo 'export SFDX_CONSUMER_KEY=${PROD_US_CONSUMER_KEY}' >> $BASH_ENV
+            echo 'export PROD_US_USERNAME=${PROD_US_USERNAME}' >> $BASH_ENV
+            echo 'export PROD_US_INSTANCE_URL=${PROD_US_INSTANCE_URL}' >> $BASH_ENV
+
+      - sfdx/auth:
+          defaultusername: $PROD_US_USERNAME
+          instanceUrl: $PROD_US_INSTANCE_URL
+
+      - run:
+          name: Run your SFDX commands here
+          command: |
+            sfdx force:auth:list
+            sfdx force:source:deploy -l RunLocalTests -u $PROD_US_USERNAME --json --loglevel fatal -x manifest/package.xml
+
+  production-au-destructive:
+    executor: sfdx/default
+    steps:
+      - checkout
+      - sfdx/install:
+          version: 7.84.2
+      - run:
+          name: Inject envs
+          command: |
+            echo 'export SFDX_JWT_KEY=${JWT_KEY}' >> $BASH_ENV
+            echo 'export SFDX_CONSUMER_KEY=${PROD_CONSUMER_KEY}' >> $BASH_ENV
+            echo 'export PROD_USERNAME=${PROD_USERNAME}' >> $BASH_ENV
+            echo 'export PROD_INSTANCE_URL=${PROD_INSTANCE_URL}' >> $BASH_ENV
+
+      - sfdx/auth:
+          defaultusername: $PROD_USERNAME
+          instanceUrl: $PROD_INSTANCE_URL
+
+      - run:
+          name: Run your SFDX commands here
+          command: |
+            sfdx force:auth:list
+             sfdx force:mdapi:deploy -d destructive -u $PROD_USERNAME -w -1
+
+  production-us-checkonly:
+    executor: sfdx/default
+    steps:
+      - checkout
+      - sfdx/install:
+          version: 7.84.2
+      - run:
+          name: Inject envs
+          command: |
+            echo 'export SFDX_JWT_KEY=${JWT_US_KEY}' >> $BASH_ENV
+            echo 'export SFDX_CONSUMER_KEY=${PROD_US_CONSUMER_KEY}' >> $BASH_ENV
+            echo 'export PROD_US_USERNAME=${PROD_US_USERNAME}' >> $BASH_ENV
+            echo 'export PROD_US_INSTANCE_URL=${PROD_US_INSTANCE_URL}' >> $BASH_ENV
+
+      - sfdx/auth:
+          defaultusername: $PROD_US_USERNAME
+          instanceUrl: $PROD_US_INSTANCE_URL
+
+      - run:
+          name: Run your SFDX commands here
+          command: |
+            sfdx force:auth:list
+            sfdx force:source:deploy --checkonly  --sourcepath force-app -u $PROD_US_USERNAME  --testlevel RunLocalTests
+  production-au-checkonly:
+    executor: sfdx/default
+    steps:
+      - checkout
+      - sfdx/install:
+          version: 7.84.2
+      - run:
+          name: Inject envs
+          command: |
+            echo 'export SFDX_JWT_KEY=${JWT_KEY}' >> $BASH_ENV
+            echo 'export SFDX_CONSUMER_KEY=${PROD_CONSUMER_KEY}' >> $BASH_ENV
+            echo 'export PROD_USERNAME=${PROD_USERNAME}' >> $BASH_ENV
+            echo 'export PROD_INSTANCE_URL=${PROD_INSTANCE_URL}' >> $BASH_ENV
+
+      - sfdx/auth:
+          defaultusername: $PROD_USERNAME
+          instanceUrl: $PROD_INSTANCE_URL
+
+      - run:
+          name: Run your SFDX commands here
+          command: |
+            sfdx force:auth:list
+            sfdx force:source:deploy --checkonly  --sourcepath force-app -u $PROD_USERNAME  --testlevel RunLocalTests
+
+workflows:
+  test-and-deploy:
+    jobs:
+      - dubbo-release:
+          type: approval
+
+      - dubbo-sandbox:
+          requires:
+            - dubbo-release
+
+      - dev-sandbox:
+          requires:
+            - dev-release
+
+      - dev-release:
+          type: approval
+
+      - production-au:
+          requires:
+            - prod-au-release
+
+      - prod-au-release:
+          type: approval
+
+      - production-us:
+          requires:
+            - prod-us-release
+
+      - prod-us-release:
+          type: approval
+
+      - dubbo-destructive-release:
+          type: approval
+
+      - dubbo-destructive-sandbox:
+          requires:
+            - dubbo-destructive-release
+
+      - dev-destructive-release:
+          type: approval
+
+      - dev-destructive-sandbox:
+          requires:
+            - dev-destructive-release
+
+      - prod-au-destructive-release:
+          type: approval
+
+      - production-au-destructive:
+          requires:
+            - prod-au-destructive-release
+
+      - prod-au-run-checkonly:
+          type: approval
+
+      - production-au-checkonly:
+          requires:
+            - prod-au-run-checkonly
+
+      - prod-us-run-checkonly:
+          type: approval
+
+      - production-us-checkonly:
+          requires:
+            - prod-us-run-checkonly

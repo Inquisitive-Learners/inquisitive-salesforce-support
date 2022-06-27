@@ -4,14 +4,23 @@
         <fullName>Support Queue Case Routing</fullName>
         <active>true</active>
         <ruleEntry>
+            <assignedTo>Product_Email_Bounced</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Subject = &quot;Delivery Status Notification (Failure)&quot;</formula>
+        </ruleEntry>
+        <ruleEntry>
             <assignedTo>Product_Email</assignedTo>
             <assignedToType>Queue</assignedToType>
             <formula>SuppliedEmail = &quot;support@inquisitive.com&quot;</formula>
         </ruleEntry>
         <ruleEntry>
-            <assignedTo>Product_Email_Bounced</assignedTo>
+            <assignedTo>SurveyGizmo</assignedTo>
             <assignedToType>Queue</assignedToType>
-            <formula>Subject = &quot;Delivery Status Notification (Failure)&quot;</formula>
+            <criteriaItems>
+                <field>Case.SuppliedEmail</field>
+                <operation>equals</operation>
+                <value>noreply@surveygizmo.com</value>
+            </criteriaItems>
         </ruleEntry>
         <ruleEntry>
             <assignedTo>Support</assignedTo>

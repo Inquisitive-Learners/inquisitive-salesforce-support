@@ -3,13 +3,14 @@
     <types>
        <members>Product_Email</members>
        <members>Product_Email_Bounced</members>
+         <members>SurveyGizmo</members>       
        <members>Support</members>
         <name>Queue</name>        
     </types> 
-    <types>
+   <!-- <types>
          <members>Case</members>
         <name>Settings</name>
-    </types>
+    </types> -->
     <types>   
         <members>Case</members>
         <name>CustomObject</name>

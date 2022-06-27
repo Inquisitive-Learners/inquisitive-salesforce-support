@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>54.0</apiVersion>
+    <constants>
+        <name>ProductEmailBouncedQueueName</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Product_Email_Bounced</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>ProductEmailQueueName</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Product_Email</stringValue>
+        </value>
+    </constants>
     <decisions>
         <name>Is_Product_Email</name>
         <label>Is_Product_Email</label>
         <locationX>182</locationX>
-        <locationY>575</locationY>
-        <defaultConnector>
-            <targetReference>Get_Support_Record_Type_Id</targetReference>
-        </defaultConnector>
+        <locationY>335</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Is_A_Product_Email</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.OwnerId</leftValueReference>
+                <leftValueReference>$Record.Owner:Group.DeveloperName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <elementReference>ProductEmailQueueId</elementReference>
+                    <elementReference>ProductEmailQueueName</elementReference>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.OwnerId</leftValueReference>
+                <leftValueReference>$Record.Owner:Group.DeveloperName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <elementReference>ProductEmailBouncedQueueId</elementReference>
+                    <elementReference>ProductEmailBouncedQueueName</elementReference>
                 </rightValue>
             </conditions>
             <connector>
@@ -56,95 +67,11 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
-        <name>Get_Product_Email_Bounced_QueueId</name>
-        <label>Get Product Email Bounced QueueId</label>
-        <locationX>182</locationX>
-        <locationY>455</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Is_Product_Email</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Type</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Queue</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Product_Email_Bounced</stringValue>
-            </value>
-        </filters>
-        <object>Group</object>
-        <outputAssignments>
-            <assignToReference>ProductEmailBouncedQueueId</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_Product_Email_Queue_Id</name>
-        <label>Get Product Email Queue Id</label>
-        <locationX>182</locationX>
-        <locationY>335</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Product_Email_Bounced_QueueId</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Type</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Queue</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Product_Email</stringValue>
-            </value>
-        </filters>
-        <object>Group</object>
-        <outputAssignments>
-            <assignToReference>ProductEmailQueueId</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
-    </recordLookups>
-    <recordLookups>
-        <description>Get the id for the Support Record Type and store it in the variable SupportRecordTypeId</description>
-        <name>Get_Support_Record_Type_Id</name>
-        <label>Get Support Record Type Id</label>
-        <locationX>314</locationX>
-        <locationY>695</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Set_Record_Type_to_Support</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>DeveloperName</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Support</stringValue>
-            </value>
-        </filters>
-        <object>RecordType</object>
-        <outputAssignments>
-            <assignToReference>SupportRecordTypeId</assignToReference>
-            <field>Id</field>
-        </outputAssignments>
-    </recordLookups>
-    <recordLookups>
         <description>Get the id of the System RecordType</description>
         <name>Get_System_Record_Type_Id</name>
         <label>Get System Record Type Id</label>
         <locationX>50</locationX>
-        <locationY>695</locationY>
+        <locationY>455</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Close_Case_and_Set_Record_Type</targetReference>
@@ -168,7 +95,7 @@
         <name>Close_Case_and_Set_Record_Type</name>
         <label>Close Case and Set Record Type</label>
         <locationX>50</locationX>
-        <locationY>815</locationY>
+        <locationY>575</locationY>
         <inputAssignments>
             <field>RecordTypeId</field>
             <value>
@@ -183,24 +110,11 @@
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
-    <recordUpdates>
-        <name>Set_Record_Type_to_Support</name>
-        <label>Set Record Type to Support</label>
-        <locationX>314</locationX>
-        <locationY>815</locationY>
-        <inputAssignments>
-            <field>RecordTypeId</field>
-            <value>
-                <stringValue>0129t0000000Yo5AAE</stringValue>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
     <start>
         <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Product_Email_Queue_Id</targetReference>
+            <targetReference>Is_Product_Email</targetReference>
         </connector>
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterLogic>or</filterLogic>

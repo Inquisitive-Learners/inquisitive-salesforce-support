@@ -40,9 +40,16 @@
         <members>Support</members>
         <name>EmailTemplateFolder</name>
     </types> 
+     <types>
+      
+        <members>Case_Record_Page_Layout</members>
+        <name>FlexiPage</name>
+    </types>   
 
      <types>
-        <members>Case.SendEmail</members>                                                
+        <members>Case.SendEmail</members> 
+        <members>Case.Update_Case_Record</members>    
+        <members>Contact.Update_Contact_Record</members>    
         <name>QuickAction</name>
     </types>
     <types>

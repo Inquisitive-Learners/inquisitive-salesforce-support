@@ -8,8 +8,8 @@
             <notifyCcRecipients>false</notifyCcRecipients>
             <replyToEmail>amir.akhoundpour+support@inquisitive.com</replyToEmail>
             <senderEmail>amir.akhoundpour@inquisitive.com</senderEmail>
-            <senderName>Inquisitive Support</senderName>
-            <template>Support/Case_Creation_Email_1655952644920</template>
+            <senderName>Inquistive Support</senderName>
+            <template>Support/Case_Creation_Email_1655937595921</template>
         </ruleEntry>
     </autoResponseRule>
 </AutoResponseRules>

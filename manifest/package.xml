@@ -58,13 +58,13 @@
     </types> 
       <types> 
         <name>Report</name> 
-        <members>Support/New_Cases_E54</members> 
-         <members>Support/In_Progress_Cases_rIM</members> 
-          <members>Support/Waiting_For_Customers_Cases_yiJ</members> 
-           <members>Support/Closed_Cases_zc7</members> 
+            <members>Support/New_Cases_E54</members> 
+            <members>Support/In_Progress_Cases_rIM</members> 
+            <members>Support/Waiting_For_Customers_Cases_yiJ</members> 
+            <members>Support/Closed_Cases_zc7</members> 
             <members>Support/Cases_Category_vD7</members> 
-             <members>Support/Open_Cases_3oN</members> 
-              <members>Support/Closed_Cases_Trend_IVa</members> 
+            <members>Support/Open_Cases_3oN</members> 
+            <members>Support/Closed_Cases_Trend_IVa</members> 
          </types> 
     <types>
         <members>Support_Agent</members>

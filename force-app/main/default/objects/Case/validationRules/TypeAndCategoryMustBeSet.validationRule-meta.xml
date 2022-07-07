@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TypeAndCategoryMustBeSet</fullName>
+    <active>true</active>
+    <description>Case Type and Category must be set before closing the case</description>
+    <errorConditionFormula>TEXT(Status) == &apos;Closed&apos;  &amp;&amp; ( ISBLANK(TEXT(Type)) || ISBLANK(TEXT(Category__c)))</errorConditionFormula>
+    <errorMessage>Please set case Type and Category</errorMessage>
+</ValidationRule>

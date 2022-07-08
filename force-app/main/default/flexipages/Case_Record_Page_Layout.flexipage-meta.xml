@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>A two-column record page that includes the Case Details, Contact Details and Case Feed</description>
     <flexiPageRegions>
         <name>header</name>
         <type>Region</type>
@@ -13,8 +12,11 @@
                     <value>Id</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>titleFieldName</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>updateQuickActionName</name>
-                    <value>Case.Service_Console_Case_Details</value>
+                    <value>Case.Update_Case_Record</value>
                 </componentInstanceProperties>
                 <componentName>console:relatedRecord</componentName>
                 <identifier>leftsidebar_cmp1_relatedrecord</identifier>
@@ -27,8 +29,11 @@
                     <value>ContactId</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>titleFieldName</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>updateQuickActionName</name>
-                    <value>Contact._LightningRelatedContact</value>
+                    <value>Contact.Update_Contact_Record</value>
                 </componentInstanceProperties>
                 <componentName>console:relatedRecord</componentName>
                 <identifier>leftsidebar_cmp2_relatedrecord</identifier>
@@ -169,7 +174,7 @@
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Case Record View Default</masterLabel>
+    <masterLabel>Case Record Page Layout</masterLabel>
     <sobjectType>Case</sobjectType>
     <template>
         <name>flexipage:recordHomeLeftSidebarTemplateDesktop</name>

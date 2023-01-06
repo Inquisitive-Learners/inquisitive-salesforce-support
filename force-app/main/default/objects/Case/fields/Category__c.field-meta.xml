@@ -52,6 +52,21 @@
                 <default>false</default>
                 <label>Remittance advice</label>
             </value>
+            <value>
+                <fullName>Cancel and refund request</fullName>
+                <default>false</default>
+                <label>Cancel and refund request</label>
+            </value>
+            <value>
+                <fullName>Feature Query</fullName>
+                <default>false</default>
+                <label>Feature Query</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

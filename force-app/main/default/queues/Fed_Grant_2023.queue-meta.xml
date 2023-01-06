@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Queue xmlns="http://soap.sforce.com/2006/04/metadata">
     <doesSendEmailToMembers>false</doesSendEmailToMembers>
-    <name>Support</name>
+    <name>Fed Grant 2023</name>
     <queueMembers>
-        <publicGroups>
-            <publicGroup>Support</publicGroup>
-        </publicGroups>
+        <users>
+            <user>jane.heydon@inquisitive.com</user>
+        </users>
     </queueMembers>
     <queueSobject>
         <sobjectType>Case</sobjectType>

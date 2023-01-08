@@ -31,4 +31,10 @@
         <label>Merged</label>
         <closed>true</closed>
     </standardValue>
+    <standardValue>
+        <fullName>Reopen</fullName>
+        <default>false</default>
+        <label>Reopen</label>
+        <closed>false</closed>
+    </standardValue>
 </StandardValueSet>

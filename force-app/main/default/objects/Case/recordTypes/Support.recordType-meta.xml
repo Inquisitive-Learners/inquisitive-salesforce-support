@@ -11,7 +11,19 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Cancel and refund request</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Content query</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Feature Query</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
             <default>false</default>
         </values>
         <values>
